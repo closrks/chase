@@ -8,16 +8,40 @@
     <script src='/socket.io/socket.io.js'></script>
     <script>
       var socket = io();
-      socket.emit('subscribe', 'name');
+
+      socket.on('user join', function() {
+        var node = document.createElement('li');
+        var textnode = document.createTextNode(data.user + ' joined the room');
+        node.appendChild(textnode);
+        document.getElementById('chat').appendChild(node);
+      });
+
       socket.on('new message', function(data) {
         var node = document.createElement('li');
         var textnode = document.createTextNode(data.message);
         node.appendChild(textnode);
-        document.getElementById('list').appendChild(node);
+        document.getElementById('chat').appendChild(node);
       });
-      document.getElementById('texter').addEventListener('click', function() {
+
+      socket.on('user leave', function() {
+        var node = document.createElement('li');
+        var textnode = document.createTextNode(data.user + ' left the room');
+        node.appendChild(textnode);
+        document.getElementById('chat').appendChild(node);
+      });
+
+      document.getElementById('join').addEventListener('click', function() {
+        socket.emit('join', { room: 'name' });
+      });
+
+      document.getElementById('leave').addEventListener('click', function() {
+        socket.emit('leave', { room: 'name' });
+      });
+
+      document.getElementById('post').addEventListener('click', function() {
         socket.emit('send message', { room: 'name', message: 'Hey!' });
       });
+
     </script>
 </body>
 </html>
