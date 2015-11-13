@@ -1,0 +1,26 @@
+{
+  "name": "chase",
+  "version": "0.0.1",
+  "description": "The challenging game of changing strategies",
+  "main": "./server/index.js",
+  "scripts": {
+    "mongo": "mongod --config ./server/db/mongo.conf && mongo",
+    "seed": "node ./server/db/seed.js"
+  },
+  "author": "carlosavila.ce@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^1.4.2",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "express-handlebars": "^2.0.1",
+    "lodash": "^3.10.1",
+    "mongoose": "^4.1.11",
+    "path": "^0.12.7",
+    "socket.io": "^1.3.7"
+  },
+  "devDependencies": {
+    "charlatan": "^1.0.0",
+    "config": "^1.16.0"
+  }
+}

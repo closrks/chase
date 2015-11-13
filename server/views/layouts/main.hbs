@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chase</title>
+</head>
+<body>
+    {{{body}}}
+    <script src='/socket.io/socket.io.js'></script>
+    <script>
+      var socket = io();
+      socket.emit('subscribe', 'room-name');
+      socket.on('room post', function(data) {
+        var node = document.createElement('li');
+        var textnode = document.createTextNode(data.message);
+        node.appendChild(textnode);
+        document.getElementById('list').appendChild(node);
+      });
+      socket.on('clear room post', function() {
+        document.getElementById('list').innerHTML = "";
+      });
+      document.getElementById('texter').addEventListener('click', function() {
+        socket.emit('room post', { room: 'room-name', message: 'blah'});
+      });
+    </script>
+</body>
+</html>
