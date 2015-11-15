@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Chase</title>
+    <title>Chase Authentication</title>
+    <link rel="stylesheet" href=""
 </head>
 <body>
     {{{body}}}
@@ -9,7 +10,7 @@
     <script>
       var socket = io();
 
-      socket.on('user join', function() {
+      socket.on('user join', function(data) {
         var node = document.createElement('li');
         var textnode = document.createTextNode(data.user + ' joined the room');
         node.appendChild(textnode);
@@ -23,19 +24,19 @@
         document.getElementById('chat').appendChild(node);
       });
 
-      socket.on('user leave', function() {
+      socket.on('user leave', function(data) {
         var node = document.createElement('li');
         var textnode = document.createTextNode(data.user + ' left the room');
         node.appendChild(textnode);
         document.getElementById('chat').appendChild(node);
       });
 
-      document.getElementById('join').addEventListener('click', function() {
-        socket.emit('join', { room: 'name' });
+      document.getElementById('subscribe').addEventListener('click', function() {
+        socket.emit('join', { user: 'name', room: 'name' });
       });
 
-      document.getElementById('leave').addEventListener('click', function() {
-        socket.emit('leave', { room: 'name' });
+      document.getElementById('unsubscribe').addEventListener('click', function() {
+        socket.emit('leave', { user: 'name', room: 'name' });
       });
 
       document.getElementById('post').addEventListener('click', function() {

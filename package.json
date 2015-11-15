@@ -4,6 +4,7 @@
   "description": "The challenging game of changing strategies",
   "main": "./server/index.js",
   "scripts": {
+    "start": "cd server && nodemon index.js",
     "mongo": "mongod --config ./server/db/mongo.conf && mongo",
     "seed": "node ./server/db/seed.js"
   },

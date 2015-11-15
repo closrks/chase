@@ -5,27 +5,21 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     exphbs = require('express-handlebars');
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 
 // set view
-app.set('views', path.join(__dirname, '/views'));
+console.log(__dirname)
+app.set('views', path.join(__dirname, 'views'));
 app.engine('hbs', exphbs({
-    defaultLayout: 'main',
+    // defaultLayout: 'main', // don't want a main layout
     extname: '.hbs'
 }));
 app.set('view engine', 'hbs');
 
-// start middleware
+// parse params, query, body
 app.use(bodyParser.json());
 
-// serve pages
-app.get('/', function(res, res, next) {
-    res.render('home')
-});
-// api
-app.post('/clear', function(req, res, next) {
-    res.status(200).json({ success: true });
-});
+app.use(require('./routes/login'));
 
 // HTTP
 server.listen(port, function() {
