@@ -8,7 +8,6 @@ var express = require('express'),
 var port = process.env.PORT || 3000;
 
 // set view
-console.log(__dirname)
 app.set('views', path.join(__dirname, 'views'));
 app.engine('hbs', exphbs({
     // defaultLayout: 'main', // don't want a main layout
