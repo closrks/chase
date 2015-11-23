@@ -19,7 +19,7 @@ router.get('/logout', function(req, res, next) {
 
 // eventually this will serve the app bundle
 router.get('/profile', function(req, res, next) {
-    res.render('profile')
+    res.render('profile');
 });
 
 
